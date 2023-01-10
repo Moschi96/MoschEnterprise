@@ -24,7 +24,9 @@ R290_Df_Mean,R290_Df_Dif  = KM_Mean_Dif(R290_Df)
 R410A_Df_Mean,R410A_Df_Dif  = KM_Mean_Dif(R410A_Df)
 R454C_Df_Mean,R454C_Df_Dif  = KM_Mean_Dif(R454C_Df)
 
-print(R32_Df_Dif)
+
+print(R32_Df_Mean, 'Das ist der R32_DF_Mean')
+
 
 R32_Df_Dif=R32_Df_Dif.transpose()
 R290_Df_Dif=R290_Df_Dif.transpose()
@@ -33,18 +35,79 @@ R410A_Df_Dif=R410A_Df_Dif.transpose()
 R454C_Df_Dif = R454C_Df_Dif.transpose()
 #print(R454C_Df_Dif.loc['Dif_eta_is'])
 #print(R32_Df_Dif['Dif_eta_is'])
-R32_Df_Dif.mask(R32_Df_Dif.eq('None')).dropna()
+
+R32_Df_Dif= R32_Df_Dif[R32_Df_Dif['Dif_eta_is'].notna()]
+R290_Df_Dif = R290_Df_Dif[R290_Df_Dif['Dif_eta_is'].notna()]
+R410A_Df_Dif = R410A_Df_Dif[R410A_Df_Dif['Dif_eta_is'].notna()]
+R454C_Df_Dif = R454C_Df_Dif[R454C_Df_Dif['Dif_eta_is'].notna()]
+
+print(R290_Df_Dif)
 
 
+R32_Df_Dif=R32_Df_Dif.transpose()
+R290_Df_Dif=R290_Df_Dif.transpose()
+
+R410A_Df_Dif=R410A_Df_Dif.transpose()
+R454C_Df_Dif = R454C_Df_Dif.transpose()
+print(R290_Df_Dif)
+
+R32_Df_Dif_eta_is  = R32_Df_Dif.loc['Dif_eta_is']
+R290_Df_Dif_eta_is  = R290_Df_Dif.loc['Dif_eta_is']
+R410A_Df_Dif_eta_is  = R410A_Df_Dif.loc['Dif_eta_is']
+R454C_Df_Dif_eta_is  = R454C_Df_Dif.loc['Dif_eta_is']
+print(R290_Df_Dif_eta_is)
+
+
+
+
+labels = ['PI3', 'PI35', 'PI4', 'PI45', 'PI5', 'PI55', 'PI6', 'PI65']
+Dif_eta_is = pd.DataFrame()
+#Dif_eta_is['PI_Set'] = labels
+Dif_eta_is['R410A_dif'] = R410A_Df_Dif_eta_is
+Dif_eta_is['R290_dif'] = R290_Df_Dif_eta_is
+Dif_eta_is['R32_dif'] = R32_Df_Dif_eta_is
+Dif_eta_is['R454C_dif'] = R454C_Df_Dif_eta_is
+Dif_eta_is = Dif_eta_is.fillna(0)
+
+Dif_eta_is.plot(kind='bar', stacked=False, title= 'Fehlerabweichung des Isentropenwirkungsgrad')
+plt.savefig('fehlerabweichung.jpeg')
+
+
+'''
+width = 0.25
+fig, ax = plt.subplots()
+rects1 = ax.bar(Dif_eta_is.loc(0), Dif_eta_is['R410A_dif'], width , label = 'R410A')
+rects2 = ax.bar(Dif_eta_is.row(0), Dif_eta_is['R290_dif'], width , label = 'R290')
+rects3 = ax.bar(Dif_eta_is.row(0), Dif_eta_is['R32_dif'], width , label = 'R32')
+rects4 = ax.bar(Dif_eta_is.row(0), Dif_eta_is['R454C_dif'], width , label = 'R454C')'''
+
+plt.show()
+print(Dif_eta_is)
+
+
+
+
+
+
+
+
+
+#Hier ist der Bumms für Excel
+'''
 with pd.ExcelWriter('Kältemittel.xlsx',engine= 'xlsxwriter') as writer:
     R410A_Df.to_excel(writer, sheet_name='R410A')
     R454C_Df.to_excel(writer, sheet_name='R454C')
     R32_Df.to_excel(writer, sheet_name='R32')
     R290_Df.to_excel(writer, sheet_name='R290')
+with pd.ExcelWriter('Kältemittel_diff.xlsx',engine= 'xlsxwriter') as writer:
+    R410A_Df_Dif.to_excel(writer, sheet_name='R410A')
+    R454C_Df_Dif.to_excel(writer, sheet_name='R454C')
+    R32_Df_Dif.to_excel(writer, sheet_name='R32')
+    R290_Df_Dif.to_excel(writer, sheet_name='R290')
+'''
 
 
-print(R32_Df_Dif)
-
+# Hier ist der Bumms für den ersten Plot
 '''
 fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
 #Festlegen der Achsenbeschriftung
@@ -61,9 +124,9 @@ plt.scatter(R410A_Df['PI_Set'], R410A_Df['eta_is'], label= 'R410A')
 plt.scatter(R454C_Df['PI_Set'], R454C_Df['eta_is'], label = 'R454C')
 plt.legend()
 plt.show()
-
 '''
 
+# Hier ist der Bumms für den zweiten Plot
 '''
 fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
 #Festlegen der Achsenbeschriftung

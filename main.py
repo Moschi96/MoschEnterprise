@@ -8,7 +8,7 @@ from Calculation.Main_calculation import func_eta_isen_rosk
 from Calculation.Main_calculation import func_eta_a
 from Calculation.Main_calculation import func_eta_b
 from Calculation.Main_calculation import func_split_PI
-from Plot.Grafiken import Eta_is_Plot
+from Plot.Plot_Loss_KM import Eta_is_Ros_Vergleich_Plot
 
 
 
@@ -64,5 +64,5 @@ print(Res_Pi)
 
 
 '''Das ist die Funktion zum Plotten der Ergebnisse'''
-etaplt = Eta_is_Plot(R410A_Df['eta_is'],eta_is_Modell,R410A_Df['PI_Set'],Res_Pi)
+etaplt = Eta_is_Ros_Vergleich_Plot(R410A_Df['eta_is'],eta_is_Modell,R410A_Df['PI_Set'],Res_Pi)
 

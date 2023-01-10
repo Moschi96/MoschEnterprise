@@ -34,8 +34,28 @@ def func_eta_isen_rosk(m_flow, h_2_isentrop, h_1, a_fac, b_fac, rho_1 ,  eta_Mot
   return eta_is_ros , Rosk
 
 
+def func_Pistest( h_1, h_2_isentrop,h_2, m_flow, P_elec):
+    Pisros = ( m_flow * (h_2_isentrop- h_1)) # 1000 #kg/s * KJ/s = kW
+    PV = ( m_flow * (h_2- h_1))
+    eta_is =  (h_2_isentrop- h_1)/(h_2 - h_1)
+    P_loss = P_elec*(1- eta_is)
+    Pis= eta_is * P_elec
+    eta_is_ros = Pisros/P_elec
+    pistest = pd.DataFrame()
+    pistest['PisRos'] = Pisros
+    pistest['PV'] = PV
+    pistest['Pis'] = Pis
+
+
+    pistest['eta_is_ros'] =eta_is_ros
+    pistest['eta_is'] = eta_is
+    pistest['Ploss']= P_loss
+    return pistest
+
+
+
 def func_eta_a(m_flow, h_2_isentrop, h_1, a_fac):
-  Pis = ( m_flow * (h_2_isentrop- h_1)) *1000
+  Pis = ( m_flow * (h_2_isentrop- h_1)) /1000
   denominator = ( (m_flow * ( h_2_isentrop - h_1)) + a_fac )
   eta_is_a = Pis/denominator
   return eta_is_a
@@ -141,7 +161,6 @@ def KM_Mean_Dif(Res):
     #calc_pi = pd.concat([Mean_Res_Pi,dRes_pi[:]])
     #calc_pi = pd.concat([PI, calc_pi[:]])
 
-
-
     return Mean_Res_Pi,dRes_pi
+
 
