@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 # Get Data from excel File
 dataFolder = Path(__file__).resolve().parent # Absoluter Pfad zum Ordner dieser Datei, findet ihn automatisch heraus
 import sys; sys.path.append(str(dataFolder.parent)) # Füge Ordner zur Laufzeitumgebung damit die selbst erstellte Module gefunden werden
-
+import seaborn as sb
 print(dataFolder)
 ''' Diese Datei lädt die Quasistätionären Data in abhängigkeit von dem Verdichtungsverhältnis ein und berechnet damit die Ploss nach Roskosch. '''
 
@@ -547,10 +547,12 @@ plot_LR_R290_PI_55 = plot_LR_KM_PI(P_KM_PI=P_R290_PI55, LR_KM_PI= linP_R290_PI55
 plot_LR_R290_PI_6 = plot_LR_KM_PI(P_KM_PI=P_R290_PI6, LR_KM_PI= linP_R290_PI6, name= str('R290_PI6'))
 plot_LR_R290_PI_65 = plot_LR_KM_PI(P_KM_PI=P_R290_PI65, LR_KM_PI= linP_R290_PI65, name= str('R290_PI65'))
 
-
 plot_LR_R410A_PI_3 = plot_LR_KM_PI(P_KM_PI=P_R410A_PI3, LR_KM_PI= linP_R410A_PI3, name= str('R410A_PI3'))
+
 plot_LR_R410A_PI_35 = plot_LR_KM_PI(P_KM_PI=P_R410A_PI35, LR_KM_PI= linP_R410A_PI35, name= str('R410A_PI35'))
+
 plot_LR_R410A_PI_4 = plot_LR_KM_PI(P_KM_PI=P_R410A_PI4, LR_KM_PI= linP_R410A_PI4, name= str('R410A_PI4'))
+
 plot_LR_R410A_PI_45 = plot_LR_KM_PI(P_KM_PI=P_R410A_PI45, LR_KM_PI= linP_R410A_PI45, name= str('R410A_PI45'))
 plot_LR_R410A_PI_5 = plot_LR_KM_PI(P_KM_PI=P_R410A_PI5, LR_KM_PI= linP_R410A_PI5, name= str('R410A_PI5'))
 plot_LR_R410A_PI_55 = plot_LR_KM_PI(P_KM_PI=P_R410A_PI55, LR_KM_PI= linP_R410A_PI55, name= str('R410A_PI55'))
@@ -572,8 +574,32 @@ from Plot.Plot_Regression import plot_LR_R410A_PI
 from Plot.Plot_Regression import plot_LR_R454C_PI
 
 
-plot_LR_R32_PI(P_R32_PI25,linP_R32_PI25,P_R32_PI3,linP_R32_PI3,P_R32_PI35,linP_R32_PI35,P_R32_PI4,linP_R32_PI4,P_R32_PI45,linP_R32_PI45)
+plot_LR_R32_PI(P_R32_PI25,linP_R32_PI25,P_R32_PI3,linP_R32_PI3,P_R32_PI35,linP_R32_PI35,P_R32_PI4,linP_R32_PI4
+               ,P_R32_PI45,linP_R32_PI45)
 
-plot_LR_R290_PI(P_R290_PI25,linP_R290_PI25, P_R290_PI3,linP_R290_PI3,linP_R290_PI35,P_R290_PI35,P_R290_PI4,linP_R290_PI4,P_R290_PI45,linP_R290_PI45,P_R290_PI5,linP_R290_PI5,P_R290_PI55,linP_R290_PI55,P_R290_PI6,linP_R290_PI6,linP_R290_PI65,P_R290_PI65)
-plot_LR_R410A_PI(P_R410A_PI3,linP_R410A_PI3,P_R410A_PI35,linP_R410A_PI35,P_R410A_PI4,linP_R410A_PI4,P_R410A_PI45,linP_R410A_PI45,P_R410A_PI5,linP_R410A_PI5,linP_R410A_PI55,P_R410A_PI55,P_R410A_PI6,linP_R410A_PI6,P_R410A_PI65,linP_R410A_PI65)
-plot_LR_R454C_PI(P_R454C_PI35,linP_R454C_PI35,P_R454C_PI45,linP_R454C_PI45,P_R454C_PI5,linP_R454C_PI5,P_R454C_PI55,linP_R454C_PI55,P_R454C_PI6,linP_R454C_PI6,P_R454C_PI65,linP_R454C_PI65)
+plot_LR_R290_PI(P_R290_PI25,linP_R290_PI25, P_R290_PI3,linP_R290_PI3,linP_R290_PI35,P_R290_PI35,P_R290_PI4,
+                linP_R290_PI4,P_R290_PI45,linP_R290_PI45,P_R290_PI5,linP_R290_PI5,P_R290_PI55,linP_R290_PI55,
+                P_R290_PI6,linP_R290_PI6,linP_R290_PI65,P_R290_PI65)
+plot_LR_R410A_PI(P_R410A_PI3,linP_R410A_PI3,P_R410A_PI35,linP_R410A_PI35,P_R410A_PI4,linP_R410A_PI4,P_R410A_PI45,
+                 linP_R410A_PI45,P_R410A_PI5,linP_R410A_PI5,linP_R410A_PI55,P_R410A_PI55,P_R410A_PI6,linP_R410A_PI6,
+                 P_R410A_PI65,linP_R410A_PI65)
+plot_LR_R454C_PI(P_R454C_PI35,linP_R454C_PI35,P_R454C_PI45,linP_R454C_PI45,P_R454C_PI5,linP_R454C_PI5,P_R454C_PI55,
+                 linP_R454C_PI55,P_R454C_PI6,linP_R454C_PI6,P_R454C_PI65,linP_R454C_PI65)
+
+print(clean_R410A_PI35_DF())
+to =clean_R410A_PI35_DF().drop(['P1_Set','P2_Set', 'T_Amb_Process','tc'],axis= 1)
+#vo1= to.drop(['P2_Process','T2_Process','h2', 'h2is','s2', 'cp2'],axis =1)
+to['Ploss'] =  P_R410A_PI35['P_loss']
+
+print(to , 'Das ist der komplette Datensatz')
+#pd.plotting.scatter_matrix(vo1,figsize=(15, 15)
+                                 #,marker = 'o'
+                                 #,hist_kwds={'bins' : 20}
+                                 #,s = 60
+                                 #,alpha = 0.8)
+#plt.show()
+#print(vo1)
+
+corr_Matrix = to.corr()
+zickzack=corr_Matrix['Power'].sort_values(ascending=False)
+print(zickzack)

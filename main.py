@@ -61,8 +61,11 @@ print(Res_Pi)
 
 #plt.plot(Rosk)
 #plt.show()
-
+R410A_Df['eta_is_Rosk']= eta_is_Modell
 
 '''Das ist die Funktion zum Plotten der Ergebnisse'''
 etaplt = Eta_is_Ros_Vergleich_Plot(R410A_Df['eta_is'],eta_is_Modell,R410A_Df['PI_Set'],Res_Pi)
 
+corr_Matrix = R410A_Df.corr()
+zickzack=corr_Matrix['eta_is_Rosk'].sort_values(ascending=False)
+print(zickzack)

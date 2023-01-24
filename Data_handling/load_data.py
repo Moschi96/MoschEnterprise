@@ -134,7 +134,6 @@ def getdata_R410A_PI35():
 def getdata_R410A_PI4():
     rawdata_R410A_PI4_dic = dataFolder/'03_Code'/'Input_Data'/'05_Quasistationär_csv'/'R410A' /'R410A_pi_4.csv'
     rawdata_R410A_PI_4 = pd.read_csv(rawdata_R410A_PI4_dic)
-    print(rawdata_R410A_PI_4, 'Das ist der DataFrame')
     return rawdata_R410A_PI_4
 def getdata_R410A_PI45():
     rawdata_R410A_PI45_dic = dataFolder/'03_Code'/'Input_Data'/'05_Quasistationär_csv'/'R410A' /'R410A_pi_45.csv'

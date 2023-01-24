@@ -196,7 +196,7 @@ plt.plot(x_Achse, Tan_R410A['PI45'],color = 'teal' , label = 'PI 4.5')
 plt.plot(x_Achse, Tan_R410A['PI5'],color = 'dodgerblue' , label = 'PI 5')
 plt.plot(x_Achse, Tan_R410A['PI55'],color = 'navy' , label = 'PI 5.5')
 plt.plot(x_Achse, Tan_R410A['PI6'],color = 'blueviolet' , label = 'PI 6')
-#plt.plot(x_Achse, Tan_R410A['PI65'],color = 'magenta' , label = 'PI 6')
+plt.plot(x_Achse, Tan_R410A['PI65'],color = 'magenta' , label = 'PI 6')
 
 plt.legend()
 
@@ -359,8 +359,27 @@ from Plot.Plot_LR import plot_COE_KM
 
 
 x_290 = LR_R290_Data.iloc[:,[0]]
-plot_COE_KM(LR_R290_Data['COE'], x_Achse= x_290, KM= 'R290')
+plot_COE_KM(LR_R290_Data['LIN'], x_Achse= x_290, KM= 'R290')
 
+x_32 = LR_R32_Data.iloc[:,[0]]
+
+plot_COE_KM(LR_R32_Data['LIN'], x_Achse= x_32, KM= 'R32')
+
+x_410A = LR_R410A_Data.iloc[:,[0]]
+plot_COE_KM(LR_R410A_Data['LIN'], x_Achse= x_410A, KM= 'R410A')
+
+x_454C = LR_R454C_Data.iloc[:,[0]]
+plot_COE_KM(LR_R454C_Data['LIN'], x_Achse= x_454C, KM= 'R454C')
+
+from sklearn.preprocessing import PolynomialFeatures
+
+
+quadratic = PolynomialFeatures(degree = 3)
+
+
+X = LR_R32_Data[['COE','LIN']]
+print(X)
+Y = x_32
 
 
 
