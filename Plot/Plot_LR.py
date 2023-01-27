@@ -181,4 +181,4 @@ def plot_COE_KM(LR_KM_Data,  x_Achse , KM):
     plt.plot(x_Achse, LR_KM_Data, color='blue')
 
     plt.legend()
-    plt.show()
+    #plt.show()

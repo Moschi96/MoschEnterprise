@@ -373,13 +373,84 @@ plot_COE_KM(LR_R454C_Data['LIN'], x_Achse= x_454C, KM= 'R454C')
 
 from sklearn.preprocessing import PolynomialFeatures
 
+print(LR_R410A_Data,'Das ist LR410A')
 
-quadratic = PolynomialFeatures(degree = 3)
+
+mona = pd.DataFrame()
 
 
-X = LR_R32_Data[['COE','LIN']]
-print(X)
-Y = x_32
 
+temp_R32 = pd.DataFrame()
+temp_R32 = LR_R32_Data[['COE', 'LIN', 'PI']]
+temp_R32['KM'] = 1
+mona = mona.append(temp_R32, ignore_index=True)
+
+temp_R290 = pd.DataFrame()
+temp_R290 = LR_R290_Data[['COE', 'LIN', 'PI']]
+temp_R290['KM'] = 2
+mona = mona.append(temp_R290, ignore_index=True)
+temp_R410A = pd.DataFrame()
+temp_R410A = LR_R410A_Data[['COE', 'LIN', 'PI']]
+temp_R410A['KM'] = 3
+mona = mona.append(temp_R410A, ignore_index=True)
+temp_R454C = pd.DataFrame()
+temp_R454C = LR_R454C_Data[['COE', 'LIN', 'PI']]
+temp_R454C['KM'] = 4
+mona = mona.append(temp_R454C, ignore_index=True)
+
+
+
+print(mona)
+
+
+from sklearn.metrics import mean_squared_error
+from sklearn.neural_network import MLPRegressor
+
+Xtemp = pd.DataFrame() #Xen soll X_Test und X_Train zusammenstellen.
+Ytemp = pd.DataFrame()
+
+Xtemp['COE'] = mona['COE']
+Xtemp['LIN'] = mona['LIN']
+Ytemp['KM'] = mona['KM']
+Ytemp['PI'] = mona['PI']
+
+
+
+
+
+#X_Train, X_Test,Y_Train,Y_Test = X_PI35[:9000], X_PI35[9000:], Y_PI35[:9000], Y_PI35[9000:]
+
+
+# Modell erstellen und trainieren
+model = MLPRegressor(hidden_layer_sizes=(50,50), max_iter=1000)
+model.fit(Xtemp, Ytemp)
+
+# Vorhersagen machen und den Root Mean Squared Error berechnen
+y_pred = model.predict(Xtemp)
+rmse = np.sqrt(mean_squared_error(Ytemp, y_pred))
+print("RMSE: ", rmse)
+
+
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Beispieldaten generieren
+import numpy as np
+np.random.seed(1)
+
+# 3D-Scatter-Plot erstellen
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(LR_R32_Data['COE'], LR_R32_Data['LIN'], temp_R32['PI'] , color = 'green',label = 'R32')
+ax.scatter(LR_R290_Data['COE'], LR_R290_Data['LIN'], temp_R290['PI'] , color = 'blue',label = 'R290')
+ax.scatter(LR_R410A_Data['COE'], LR_R410A_Data['LIN'], temp_R410A['PI'] , color = 'red',label = 'R410A')
+ax.scatter(LR_R454C_Data['COE'], LR_R454C_Data['LIN'], temp_R454C['PI'] , color = 'magenta',label = 'R454C')
+ax.set_xlabel('COE')
+ax.set_ylabel('LIN')
+ax.set_zlabel('PI')
+plt.legend()
+plt.show()
+
+print(LR_R410A_Data)
 
 

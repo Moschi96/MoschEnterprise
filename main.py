@@ -14,11 +14,6 @@ from Plot.Plot_Loss_KM import Eta_is_Ros_Vergleich_Plot
 
 R410A_Df = clean_R410A_DF()
 
-''' Verdichter DatenSatz für R410A'''
-#print('Das ist der DataFrame R410A_Df', R410A_Df)
-
-
-
 
 '''Reibungsfaktoren zur Bestimmung des Isentropen Wirkungsgrades nach Rosskosch'''
 a_fac = 91.59 #W Der Reibungsfaktor für Hubkolben nach Rosskosch
@@ -59,8 +54,8 @@ Res_Pi=Res_Pi.transpose()
 print(Res)
 print(Res_Pi)
 
-#plt.plot(Rosk)
-#plt.show()
+plt.plot(Rosk)
+plt.show()
 R410A_Df['eta_is_Rosk']= eta_is_Modell
 
 '''Das ist die Funktion zum Plotten der Ergebnisse'''

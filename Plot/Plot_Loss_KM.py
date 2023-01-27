@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def plot_LR(P_KM_PI, LR_KM_PI):
-    print(P_KM_PI)
+
     fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
     #Festlegen der Achsenbeschriftung
     font1 = {'family':'serif','color':'black','size':15}
@@ -178,3 +178,21 @@ def Power_Loss_Plot_PI4(P_R410A_pi4, P_R32_pi4, P_R290_pi4 ):
 
     plt.legend()
 
+def Plot_eta(P_R32,P_R290, P_R410A, P_R454C):
+    fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
+    #Festlegen der Achsenbeschriftung
+    font1 = {'family':'serif','color':'black','size':15}
+    font2 = {'family':'serif','color':'black','size':10}
+    plt.title('Isentroper Wirkungsgrad nach Rosskosch ' , fontdict= font1)
+    plt.xlabel('PI', fontdict= font2)
+    plt.ylabel('eta_is', fontdict=font2)
+    plt.grid(color = 'black', linestyle= '--', linewidth = 0.5)
+
+    plt.scatter(P_R410A['PI_Set'], P_R410A['eta_is_rosk'], label='R410A')
+
+    plt.scatter(P_R32['PI_Set'], P_R32['eta_is_rosk'], label='R32')
+    plt.scatter(P_R290['PI_Set'], P_R290['eta_is_rosk'], label='R290')
+    plt.scatter(P_R454C['PI_Set'], P_R454C['eta_is_rosk'], label = 'R454C')
+
+    plt.legend()
+    plt.show()

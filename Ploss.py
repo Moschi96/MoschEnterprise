@@ -22,22 +22,23 @@ from Data_handling.data_cleaning import clean_R32_PI3_DF
 from Data_handling.data_cleaning import clean_R32_PI35_DF
 from Data_handling.data_cleaning import clean_R32_PI4_DF
 from Data_handling.data_cleaning import clean_R32_PI45_DF
-
+from Data_handling.data_cleaning import clean_R32_DF
 '''Lädt die Berechnungen in das Script'''
-
+from Calculation.Ploss_calculation import P_R32
 from Calculation.Ploss_calculation import P_R32_Pi25
 from Calculation.Ploss_calculation import P_R32_Pi3
 from Calculation.Ploss_calculation import P_R32_Pi35
 from Calculation.Ploss_calculation import P_R32_Pi4
 from Calculation.Ploss_calculation import P_R32_Pi45
 
-
+R32_DF = clean_R32_DF()
 R32_PI25_Df = clean_R32_PI25_DF()
 R32_PI3_Df =  clean_R32_PI3_DF()
 R32_PI35_Df = clean_R32_PI35_DF()
 R32_PI4_Df = clean_R32_PI4_DF()
 R32_PI45_Df = clean_R32_PI45_DF()
 
+P_R32=P_R32(R32_DF)
 P_R32_PI25 = P_R32_Pi25(R32_PI25_Df)
 P_R32_PI3 = P_R32_Pi3(R32_PI3_Df)
 P_R32_PI35 = P_R32_Pi35(R32_PI35_Df)
@@ -106,11 +107,11 @@ x =linP_R32_PI45.coef_
 z=linP_R32_PI45.score(P_R32_PI45[['P1_Process']],P_R32_PI45[['P_loss']])
 LR_R32.loc['45'] =[x,y,z ]
 
-print(LR_R32 , 'LR_R32')
 
 
 
 
+from Data_handling.data_cleaning import clean_R290_DF
 from Data_handling.data_cleaning import clean_R290_PI25_DF
 from Data_handling.data_cleaning import clean_R290_PI3_DF
 from Data_handling.data_cleaning import clean_R290_PI35_DF
@@ -122,7 +123,7 @@ from Data_handling.data_cleaning import clean_R290_PI6_DF
 from Data_handling.data_cleaning import clean_R290_PI65_DF
 
 
-
+from Calculation.Ploss_calculation import P_R290
 from Calculation.Ploss_calculation import P_R290_Pi25
 from Calculation.Ploss_calculation import P_R290_Pi3
 from Calculation.Ploss_calculation import P_R290_Pi35
@@ -133,6 +134,7 @@ from Calculation.Ploss_calculation import P_R290_Pi55
 from Calculation.Ploss_calculation import P_R290_Pi6
 from Calculation.Ploss_calculation import P_R290_Pi65
 
+R290_Df = clean_R290_DF()
 R290_PI25_Df = clean_R290_PI25_DF()
 R290_PI3_Df = clean_R290_PI3_DF()
 R290_PI35_Df = clean_R290_PI35_DF()
@@ -143,7 +145,7 @@ R290_PI55_Df = clean_R290_PI55_DF()
 R290_PI6_Df = clean_R290_PI6_DF()
 R290_PI65_Df = clean_R290_PI65_DF()
 
-
+P_R290= P_R290(R290_Df)
 P_R290_PI25 = P_R290_Pi25(R290_PI25_Df)
 P_R290_PI3 = P_R290_Pi3(R290_PI3_Df)
 P_R290_PI35 = P_R290_Pi35(R290_PI35_Df)
@@ -254,12 +256,12 @@ x =linP_R290_PI65.coef_
 z=linP_R290_PI65.score(P_R290_PI65[['P1_Process']], P_R290_PI65[['P_loss']])
 LR_R290.loc['65'] =[x,y,z ]
 
-print(LR_R290,'R290')
 
-
+from Data_handling.data_cleaning import clean_R410A_DF
 from Data_handling.data_cleaning import clean_R410A_PI3_DF
 from Data_handling.data_cleaning import clean_R410A_PI35_DF
 from Data_handling.data_cleaning import clean_R410A_PI4_DF
+from Data_handling.data_cleaning import clean_R410A_PI42_DF
 from Data_handling.data_cleaning import clean_R410A_PI45_DF
 from Data_handling.data_cleaning import clean_R410A_PI5_DF
 from Data_handling.data_cleaning import clean_R410A_PI55_DF
@@ -267,7 +269,7 @@ from Data_handling.data_cleaning import clean_R410A_PI6_DF
 from Data_handling.data_cleaning import clean_R410A_PI65_DF
 
 
-
+from Calculation.Ploss_calculation import P_R410A
 from Calculation.Ploss_calculation import P_R410A_Pi3
 from Calculation.Ploss_calculation import P_R410A_Pi35
 from Calculation.Ploss_calculation import P_R410A_Pi4
@@ -279,10 +281,11 @@ from Calculation.Ploss_calculation import P_R410A_Pi65
 
 
 
-
+R410A_Df = clean_R410A_DF()
 R410A_PI3_Df = clean_R410A_PI3_DF()
 R410A_PI35_Df = clean_R410A_PI35_DF()
 R410A_PI4_Df = clean_R410A_PI4_DF()
+R410A_PI42_Df = clean_R410A_PI42_DF()
 R410A_PI45_Df = clean_R410A_PI45_DF()
 R410A_PI5_Df = clean_R410A_PI5_DF()
 R410A_PI55_Df = clean_R410A_PI55_DF()
@@ -291,6 +294,10 @@ R410A_PI65_Df = clean_R410A_PI65_DF()
 
 
 
+R410A_PI4_Df = R410A_PI4_Df.append(R410A_PI42_Df)
+
+print(R410A_PI4_Df)
+P_R410A = P_R410A(R410A_Df)
 P_R410A_PI3 = P_R410A_Pi3(R410A_PI3_Df)
 P_R410A_PI35 = P_R410A_Pi35(R410A_PI35_Df)
 P_R410A_PI4 = P_R410A_Pi4(R410A_PI4_Df)
@@ -401,9 +408,9 @@ x =linP_R410A_PI65.coef_
 z=linP_R410A_PI65.score(P_R410A_PI65[['P1_Process']], P_R410A_PI65[['P_loss']])
 LR_R410A.loc['65'] =[ x, y, z]
 
-print(LR_R410A, 'LR_410A')
 
 
+from Data_handling.data_cleaning import clean_R454C_DF
 from Data_handling.data_cleaning import clean_R454C_PI35_DF
 from Data_handling.data_cleaning import clean_R454C_PI45_DF
 from Data_handling.data_cleaning import clean_R454C_PI5_DF
@@ -411,6 +418,7 @@ from Data_handling.data_cleaning import clean_R454C_PI55_DF
 from Data_handling.data_cleaning import clean_R454C_PI6_DF
 from Data_handling.data_cleaning import clean_R454C_PI65_DF
 
+from Calculation.Ploss_calculation import P_R454C
 from Calculation.Ploss_calculation import P_R454C_Pi35
 
 from Calculation.Ploss_calculation import P_R454C_Pi45
@@ -419,6 +427,7 @@ from Calculation.Ploss_calculation import P_R454C_Pi55
 from Calculation.Ploss_calculation import P_R454C_Pi6
 from Calculation.Ploss_calculation import P_R454C_Pi65
 
+R454C_Df = clean_R454C_DF()
 R454C_PI35_Df = clean_R454C_PI35_DF()
 R454C_PI45_Df = clean_R454C_PI45_DF()
 R454C_PI5_Df = clean_R454C_PI5_DF()
@@ -427,7 +436,7 @@ R454C_PI6_Df = clean_R454C_PI6_DF()
 R454C_PI65_Df = clean_R454C_PI65_DF()
 
 
-
+P_R454C = P_R454C(R454C_Df)
 P_R454C_PI35 = P_R454C_Pi35(R454C_PI35_Df)
 P_R454C_PI45 = P_R454C_Pi45(R454C_PI45_Df)
 P_R454C_PI5 = P_R454C_Pi5(R454C_PI5_Df)
@@ -513,11 +522,11 @@ LR_R454C.loc['65'] =[ x, y, z]
 
 
 
-print(LR_R454C, 'R454C')
-''' Just to save the Protocoll in Excel What am I doing for Random shit :D Merry Christmas
+
+ #Just to save the Protocoll in Excel What am I doing for Random shit :D Merry Christmas
 LR_Dic = dataFolder / 'Calculation' / 'Calculation_Data' / 'Linear_Regression_Data' / ''
 
-print(LR_Dic )
+'''
 
 LR_R32.to_excel(str(LR_Dic) + 'LR_R32.xlsx')
 LR_R290.to_excel(str(LR_Dic) + 'LR_R290.xlsx')
@@ -572,7 +581,7 @@ from Plot.Plot_Regression import plot_LR_R32_PI
 from Plot.Plot_Regression import plot_LR_R290_PI
 from Plot.Plot_Regression import plot_LR_R410A_PI
 from Plot.Plot_Regression import plot_LR_R454C_PI
-
+from Plot.Plot_Loss_KM import Plot_eta
 
 plot_LR_R32_PI(P_R32_PI25,linP_R32_PI25,P_R32_PI3,linP_R32_PI3,P_R32_PI35,linP_R32_PI35,P_R32_PI4,linP_R32_PI4
                ,P_R32_PI45,linP_R32_PI45)
@@ -586,20 +595,8 @@ plot_LR_R410A_PI(P_R410A_PI3,linP_R410A_PI3,P_R410A_PI35,linP_R410A_PI35,P_R410A
 plot_LR_R454C_PI(P_R454C_PI35,linP_R454C_PI35,P_R454C_PI45,linP_R454C_PI45,P_R454C_PI5,linP_R454C_PI5,P_R454C_PI55,
                  linP_R454C_PI55,P_R454C_PI6,linP_R454C_PI6,P_R454C_PI65,linP_R454C_PI65)
 
-print(clean_R410A_PI35_DF())
-to =clean_R410A_PI35_DF().drop(['P1_Set','P2_Set', 'T_Amb_Process','tc'],axis= 1)
-#vo1= to.drop(['P2_Process','T2_Process','h2', 'h2is','s2', 'cp2'],axis =1)
-to['Ploss'] =  P_R410A_PI35['P_loss']
 
-print(to , 'Das ist der komplette Datensatz')
-#pd.plotting.scatter_matrix(vo1,figsize=(15, 15)
-                                 #,marker = 'o'
-                                 #,hist_kwds={'bins' : 20}
-                                 #,s = 60
-                                 #,alpha = 0.8)
-#plt.show()
-#print(vo1)
 
-corr_Matrix = to.corr()
-zickzack=corr_Matrix['Power'].sort_values(ascending=False)
-print(zickzack)
+
+
+Plot_eta(P_R32, P_R290,P_R410A, P_R454C)

@@ -60,7 +60,7 @@ R290_PI65_Df_raw = getdata_R290_PI65()
 R410A_PI3_Df_raw = getdata_R410A_PI3()
 R410A_PI35_Df_raw = getdata_R410A_PI35()
 #
-R410A_PI4_Df_raw = getdata_R410A_PI4()
+R410A_PI4_Df_raw , R410A_PI42_Df_raw= getdata_R410A_PI4()
 R410A_PI45_Df_raw = getdata_R410A_PI45()
 R410A_PI5_Df_raw = getdata_R410A_PI5()
 R410A_PI55_Df_raw = getdata_R410A_PI55()
@@ -747,7 +747,34 @@ def clean_R410A_PI4_DF():
 
 
     return R410A_PI4_Df
+def clean_R410A_PI42_DF():
+    R410A_PI42_Df = pd.DataFrame()
 
+    R410A_PI42_Df['P1_Process'] = R410A_PI42_Df_raw['P1_Process']
+    R410A_PI42_Df['P1_Set'] = R410A_PI42_Df_raw['P1_Set']
+    R410A_PI42_Df['P2_Set'] = R410A_PI42_Df_raw['P2_Set']
+    R410A_PI42_Df['P2_Process'] = R410A_PI42_Df_raw['P2_Process']
+    R410A_PI42_Df['T1_Process'] = R410A_PI42_Df_raw['T1_Process']
+    R410A_PI42_Df['T2_Process'] = R410A_PI42_Df_raw['T2_Process']
+    R410A_PI42_Df['T_Amb_Process'] = R410A_PI42_Df_raw['T_Amb_Process']
+    R410A_PI42_Df['Power'] = R410A_PI42_Df_raw['Power']
+    R410A_PI42_Df['MF_Suc'] = R410A_PI42_Df_raw['MF_Suc']
+    R410A_PI42_Df['Dens_Suc'] = R410A_PI42_Df_raw['Dens_Suc']
+    R410A_PI42_Df['h1'] = R410A_PI42_Df_raw['h1']
+    R410A_PI42_Df['s1'] = R410A_PI42_Df_raw['s1']
+    R410A_PI42_Df['v1'] = R410A_PI42_Df_raw['v1']
+    R410A_PI42_Df['cp1'] = R410A_PI42_Df_raw['cp1']
+    R410A_PI42_Df['h2'] = R410A_PI42_Df_raw['h2']
+    R410A_PI42_Df['h2is'] = R410A_PI42_Df_raw['h2is']
+    R410A_PI42_Df['s2'] = R410A_PI42_Df_raw['s2']
+    R410A_PI42_Df['cp2'] = R410A_PI42_Df_raw['cp2']
+    R410A_PI42_Df['tc'] = R410A_PI42_Df_raw['tc']
+
+    # R32_Df['T_Evaps'] = R32_Df_raw['T_Evaps']
+    # R32_Df['T_Conds'] = R32_Df_raw['T_Conds']
+
+
+    return R410A_PI42_Df
 def clean_R410A_PI45_DF():
     R410A_PI45_Df = pd.DataFrame()
     R410A_PI45_Df['P1_Process'] =R410A_PI45_Df_raw['P1_Process']

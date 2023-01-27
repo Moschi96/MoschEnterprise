@@ -14,7 +14,7 @@ matplotlib.rcParams.update({
 })
 '''
 def plot_LR_KM_PI(P_KM_PI, LR_KM_PI, name):
-    print(P_KM_PI)
+
     fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
     #Festlegen der Achsenbeschriftung
     font1 = {'family':'serif','color':'black','size':15}

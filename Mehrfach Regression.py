@@ -199,8 +199,6 @@ PI65 = [P_R410A_PI65, P_R454C_PI65]
 
 full_R32 = pd.DataFrame()
 
-
-
 temp_R32= pd.DataFrame()
 full_PI35 = pd.DataFrame()
 temp_R32['P_loss'] = P_R32_PI35['P_loss']
@@ -208,27 +206,27 @@ temp_R32['P1_Process'] = P_R32_PI35['P1_Process']
 temp_R32['KM']= 1
 full_PI35 = full_PI35.append(temp_R32, ignore_index= True)
 full_R32 = full_R32.append(temp_R32, ignore_index= True)
-print(len(temp_R32))
+
 
 
 
 temp_R32['P_loss'] = P_R32_PI3['P_loss']
 temp_R32['P1_Process'] = P_R32_PI3['P1_Process']
 temp_R32['KM']= 1
-print(len(temp_R32))
+
 full_R32 = full_R32.append(temp_R32, ignore_index= True)
 
 temp_R32['P_loss'] = P_R32_PI4['P_loss']
 temp_R32['P1_Process'] = P_R32_PI4['P1_Process']
 temp_R32['KM']= 1
-print(len(temp_R32))
+
 full_R32 = full_R32.append(temp_R32, ignore_index= True)
 
 temp_R32['P_loss'] = P_R32_PI45['P_loss']
 temp_R32['P1_Process'] = P_R32_PI45['P1_Process']
 temp_R32['KM']= 1
-print(len(temp_R32))
 
+print(P_R32_PI45, 'Das ist R32 45')
 
 full_R32 = full_R32.append(temp_R32, ignore_index= True)
 
@@ -238,7 +236,7 @@ temp_R32['KM']= 1
 
 full_R32 = full_R32.append(temp_R32, ignore_index= True)
 
-print(len(full_R32), ' Das ist full R32')
+
 full_R32.to_excel('Full_R32.xlsx')
 
 
@@ -307,6 +305,7 @@ full_R290 = full_R290.append(temp_R290, ignore_index= True)
 
 
 
+
 temp_R410A= pd.DataFrame()
 full_R410A = pd.DataFrame()
 temp_R410A['P_loss'] = P_R410A_PI3['P_loss']
@@ -351,7 +350,6 @@ temp_R410A['P1_Process'] = P_R410A_PI65['P1_Process']
 temp_R410A['KM']= 3
 full_R410A = full_R410A.append(temp_R410A, ignore_index= True)
 
-
 temp_R454C= pd.DataFrame()
 full_R454C = pd.DataFrame()
 
@@ -389,17 +387,15 @@ temp_R454C['P_loss'] = P_R454C_PI65['P_loss']
 temp_R454C['P1_Process'] = P_R454C_PI65['P1_Process']
 temp_R454C['KM']= 4
 full_R454C = full_R454C.append(temp_R454C, ignore_index= True)
-print(len(full_R454C), ' Das ist full R454C')
+full_R290.to_excel('full_R290.xlsx')
+print(full_R290)
 full = pd.DataFrame()
 
 full = full.append(full_R32 , ignore_index= True)
-print(len(full),'Das ist Full nach R32')
 full = full.append(full_R290 , ignore_index= True)
-print(len(full),'Das ist Full nach R290')
 full = full.append(full_R410A , ignore_index= True)
-print(len(full),'Das ist Full nach R410A')
 full = full.append(full_R454C , ignore_index= True)
-print(len(full),'Das ist Full nach R454C')
+
 full=full.dropna().reset_index(drop=True)
 
 full = sklearn.utils.shuffle(full)
@@ -417,11 +413,15 @@ X = Xtemp
 Y = Ytemp
 #X_Train_PI35, X_Test_PI35 ,Y_Train_PI35,Y_Test_PI35 = X_PI35[:9000], X_PI35[9000:], Y_PI35[:9000], Y_PI35[9000:]
 
-#X_Train, X_Test,Y_Train,Y_Test = X[:40000], X[40000:], Y[:40000], Y[40000:]
+X_Train, X_Test,Y_Train,Y_Test = X[:40000], X[40000:], Y[:40000], Y[40000:]
 
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
+'''
+from sklearn.linear_model import SGDClassifier
+sgd_clf = SGDClassifier(random_state=42)
+x = sgd_clf.fit(X_Train_PI35,Y_Train_1)
 
-print(len(X), 'Das sit die lange von x')
+print(x)
+'''
 def Plot_Ploss_PI35(temp_R32, temp_R290, temp_R410A, temp_R454C):
     fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
     #Festlegen der Achsenbeschriftung
@@ -440,10 +440,56 @@ def Plot_Ploss_PI35(temp_R32, temp_R290, temp_R410A, temp_R454C):
     plt.show()
 
 #Plot_Ploss_PI35(temp_R32, temp_R290, temp_R410A, temp_R454C)
+'''
+from sklearn.ensemble import BaggingClassifier
+from sklearn.tree import DecisionTreeClassifier
+bag_clf = BaggingClassifier(
+            DecisionTreeClassifier(), n_estimators=500,
+            max_samples=100, bootstrap=True, n_jobs=-1
+        )
+bag_clf.fit(X_Train_PI35, Y_Train_PI35)
+y_pred = bag_clf.predict(X_Train_PI35)
+print(y_pred)
 
+
+bag_clf = BaggingClassifier(
+    base_estimator=DecisionTreeClassifier(),
+    n_estimators=500,
+    max_samples=100,
+    bootstrap=True,
+    n_jobs=-1,
+    oob_score=True
+)
+bag_clf.fit(X_Train_PI35, Y_Train_PI35)
+print(bag_clf.oob_score_)
+
+from sklearn.metrics import accuracy_score
+y_pred = bag_clf.predict(X_Train_PI35)
+accuracy = accuracy_score(Y_Train_PI35, y_pred)
+print(accuracy)
+'''
+
+'''
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+rnd_clf = RandomForestClassifier(
+    n_estimators=500,
+    max_leaf_nodes=16,
+    n_jobs=-1
+)
+print(X_Test_PI35)
+rnd_clf.fit(X_Train_PI35, Y_Train_PI35)
+y_pred = rnd_clf.predict(X_Test_PI35)
+print(y_pred)
+accuracy = accuracy_score(Y_Test_PI35, y_pred)
+print(f'Accuracy of Random Forest: {accuracy*100}%')
+
+print(rnd_clf.classes_)
+'''
 feature_cols = ['P_loss', 'P1_Process']
 class_names = ['1','2','3','4']
-'''
+
 # Create Decision Tree classifer object
 clf = DecisionTreeClassifier(max_depth= 20, random_state=0)
 
@@ -460,23 +506,5 @@ _ = tree.plot_tree(clf,
                    class_names=class_names,
                    filled=True)
 fig.savefig("decistion_tree.png")
-'''
-
-
-
-
-
-import statsmodels.api as sm
-
-
-
-# create a multiple regression model
-model = sm.OLS(y_train, X_train).fit()
-
-# print the model summary
-print(model.summary())
-
-y_pred = model.predict(X_test)
-print(y_pred)
 
 print('Process finesh')

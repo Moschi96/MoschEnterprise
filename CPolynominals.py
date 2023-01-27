@@ -33,7 +33,7 @@ R410A_Df_MF['C10_MF'] = Poly_10C_Calculation(C10_Polynome_Suction_Massflow,R410A
 R410A_Df_MF['MF_Verhältnis'] = (( R410A_Df_MF['C10_MF'] / R410A_Df_MF['MF_Suc']) -1 ) *100
 '''Die Angabe MF_Verhältnis sind in der Spalte in Prozent angegeben.'''
 
-#print(R410A_Df_MF)
+
 '''Der folgende Abschnitt beschreibt die Bestimmung der Power'''
 R410A_Df_POW = pd.DataFrame()
 
@@ -75,7 +75,7 @@ insert_einheiten = pd.DataFrame({'P1_Set': 'Bar', 'PI_Set': 'p2/p1', 'Power':'Wa
 
 pub = pd.concat([insert_einheiten, pub[:]]).reset_index(drop=True)
 
-#print(pub, 'Das ist Pub')
+
 
 
 
