@@ -451,6 +451,18 @@ ax.set_zlabel('PI')
 plt.legend()
 plt.show()
 
-print(LR_R410A_Data)
 
-
+fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
+#Festlegen der Achsenbeschriftung
+font1 = {'family':'serif','color':'black','size':15}
+font2 = {'family':'serif','color':'black','size':10}
+plt.title('Steigung über PI ' , fontdict= font1)
+plt.xlabel('PI', fontdict= font2)
+plt.ylabel('COE', fontdict=font2)
+plt.grid(color = 'black', linestyle= '--', linewidth = 0.5)
+plt.plot( temp_R32['PI'],LR_R32_Data['COE'], label='R32', color = 'magenta')
+plt.plot(temp_R290['PI'],LR_R290_Data['COE'], label='R290', color='blue')
+plt.plot(temp_R410A['PI'],LR_R410A_Data['COE'],  label='R410A', color='green')
+plt.plot( temp_R454C['PI'],LR_R454C_Data['COE'], label='R454C', color='red')
+plt.legend()
+plt.show()

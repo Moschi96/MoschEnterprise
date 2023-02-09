@@ -181,6 +181,8 @@ def P_R32_Pi25(R32_PI25_Df):
     P_R32_PI25['P2_Process'] = R32_PI25_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
 
+    P_R32_PI25['delta_s'] = R32_PI25_Df['s2'] - R32_PI25_Df['s1']
+
 
     return   P_R32_PI25
 
@@ -197,7 +199,7 @@ def P_R32_Pi3(R32_PI3_Df):
     P_R32_PI3['P1_Process'] = R32_PI3_Df['P1_Process']
     P_R32_PI3['P2_Process'] = R32_PI3_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R32_PI3['delta_s'] = R32_PI3_Df['s2'] - R32_PI3_Df['s1']
 
     return   P_R32_PI3
 
@@ -216,7 +218,7 @@ def P_R32_Pi35(R32_PI35_Df):
     P_R32_PI35['P2_Process'] = R32_PI35_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
 
-
+    P_R32_PI35['delta_s'] = R32_PI35_Df['s2'] - R32_PI35_Df['s1']
     return   P_R32_PI35
 
 def P_R32_Pi4(R32_PI4_Df):
@@ -233,7 +235,7 @@ def P_R32_Pi4(R32_PI4_Df):
     P_R32_PI4['P2_Process'] = R32_PI4_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
 
-
+    P_R32_PI4['delta_s'] = R32_PI4_Df['s2'] - R32_PI4_Df['s1']
     return   P_R32_PI4
 
 def P_R32_Pi45(R32_PI45_Df):
@@ -249,7 +251,7 @@ def P_R32_Pi45(R32_PI45_Df):
     P_R32_PI45['P1_Process'] = R32_PI45_Df['P1_Process']
     P_R32_PI45['P2_Process'] = R32_PI45_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R32_PI45['delta_s'] = R32_PI45_Df['s2'] - R32_PI45_Df['s1']
 
     return   P_R32_PI45
 
@@ -267,7 +269,7 @@ def P_R290_Pi25(R290_PI25_Df):
     P_R290_PI25['P2_Set'] = R290_PI25_Df['P2_Set']
     P_R290_PI25['P1_Process'] = R290_PI25_Df['P1_Process']
     P_R290_PI25['P2_Process'] = R290_PI25_Df['P2_Process']
-
+    P_R290_PI25['delta_s'] = R290_PI25_Df['s2'] - R290_PI25_Df['s1']
 
 
     return   P_R290_PI25
@@ -285,7 +287,7 @@ def P_R290_Pi3(R290_PI3_Df):
     P_R290_PI3['P1_Process'] = R290_PI3_Df['P1_Process']
     P_R290_PI3['P2_Process'] = R290_PI3_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R290_PI3['delta_s'] = R290_PI3_Df['s2'] - R290_PI3_Df['s1']
 
     return   P_R290_PI3
 
@@ -302,7 +304,7 @@ def P_R290_Pi35(R290_PI35_Df):
     P_R290_PI35['P1_Process'] = R290_PI35_Df['P1_Process']
     P_R290_PI35['P2_Process'] = R290_PI35_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R290_PI35['delta_s'] = R290_PI35_Df['s2'] - R290_PI35_Df['s1']
 
     return   P_R290_PI35
 
@@ -319,7 +321,7 @@ def P_R290_Pi4(R290_PI4_Df):
     P_R290_PI4['P1_Process'] = R290_PI4_Df['P1_Process']
     P_R290_PI4['P2_Process'] = R290_PI4_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R290_PI4['delta_s'] = R290_PI4_Df['s2'] - R290_PI4_Df['s1']
 
     return   P_R290_PI4
 
@@ -336,7 +338,7 @@ def P_R290_Pi45(R290_PI45_Df):
     P_R290_PI45['P1_Process'] = R290_PI45_Df['P1_Process']
     P_R290_PI45['P2_Process'] = R290_PI45_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R290_PI45['delta_s'] = R290_PI45_Df['s2'] - R290_PI45_Df['s1']
 
     return   P_R290_PI45
 
@@ -354,7 +356,7 @@ def P_R290_Pi5(R290_PI5_Df):
     P_R290_PI5['P1_Process'] = R290_PI5_Df['P1_Process']
     P_R290_PI5['P2_Process'] = R290_PI5_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R290_PI5['delta_s'] = R290_PI5_Df['s2'] - R290_PI5_Df['s1']
 
     return   P_R290_PI5
 
@@ -373,7 +375,7 @@ def P_R290_Pi55(R290_PI55_Df):
     P_R290_PI55['P2_Process'] = R290_PI55_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
 
-
+    P_R290_PI55['delta_s'] = R290_PI55_Df['s2'] - R290_PI55_Df['s1']
     return   P_R290_PI55
 
 def P_R290_Pi6(R290_PI6_Df):
@@ -390,7 +392,7 @@ def P_R290_Pi6(R290_PI6_Df):
     P_R290_PI6['P2_Process'] = R290_PI6_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
 
-
+    P_R290_PI6['delta_s'] = R290_PI6_Df['s2'] - R290_PI6_Df['s1']
     return   P_R290_PI6
 def P_R290_Pi65(R290_PI65_Df):
     '''Berechnung des Isentropen Wirkungsgrad'''
@@ -406,7 +408,7 @@ def P_R290_Pi65(R290_PI65_Df):
     P_R290_PI65['P2_Process'] = R290_PI65_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
 
-
+    P_R290_PI65['delta_s'] = R290_PI65_Df['s2'] - R290_PI65_Df['s1']
     return   P_R290_PI65
 
 
@@ -424,7 +426,7 @@ def P_R410A_Pi3(R410A_PI3_Df):
     P_R410A_PI3['P1_Process'] = R410A_PI3_Df['P1_Process']
     P_R410A_PI3['P2_Process'] = R410A_PI3_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R410A_PI3['delta_s'] = R410A_PI3_Df['s2'] - R410A_PI3_Df['s1']
 
     return   P_R410A_PI3
 
@@ -441,7 +443,7 @@ def P_R410A_Pi35(R410A_PI35_Df):
     P_R410A_PI35['P1_Process'] = R410A_PI35_Df['P1_Process']
     P_R410A_PI35['P2_Process'] = R410A_PI35_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R410A_PI35['delta_s'] = R410A_PI35_Df['s2'] - R410A_PI35_Df['s1']
 
     return   P_R410A_PI35
 
@@ -458,7 +460,7 @@ def P_R410A_Pi4(R410A_PI4_Df):
     P_R410A_PI4['P1_Process'] = R410A_PI4_Df['P1_Process']
     P_R410A_PI4['P2_Process'] = R410A_PI4_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R410A_PI4['delta_s'] = R410A_PI4_Df['s2'] - R410A_PI4_Df['s1']
 
     return   P_R410A_PI4
 
@@ -475,7 +477,7 @@ def P_R410A_Pi45(R410A_PI45_Df):
     P_R410A_PI45['P1_Process'] = R410A_PI45_Df['P1_Process']
     P_R410A_PI45['P2_Process'] = R410A_PI45_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R410A_PI45['delta_s'] = R410A_PI45_Df['s2'] - R410A_PI45_Df['s1']
 
     return   P_R410A_PI45
 
@@ -492,7 +494,7 @@ def P_R410A_Pi5(R410A_PI5_Df):
     P_R410A_PI5['P1_Process'] = R410A_PI5_Df['P1_Process']
     P_R410A_PI5['P2_Process'] = R410A_PI5_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R410A_PI5['delta_s'] = R410A_PI5_Df['s2'] - R410A_PI5_Df['s1']
 
     return   P_R410A_PI5
 
@@ -511,7 +513,7 @@ def P_R410A_Pi55(R410A_PI55_Df):
     P_R410A_PI55['P1_Process'] = R410A_PI55_Df['P1_Process']
     P_R410A_PI55['P2_Process'] = R410A_PI55_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R410A_PI55['delta_s'] = R410A_PI55_Df['s2'] - R410A_PI55_Df['s1']
 
     return   P_R410A_PI55
 
@@ -528,7 +530,7 @@ def P_R410A_Pi6(R410A_PI6_Df):
     P_R410A_PI6['P1_Process'] = R410A_PI6_Df['P1_Process']
     P_R410A_PI6['P2_Process'] = R410A_PI6_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R410A_PI6['delta_s'] = R410A_PI6_Df['s2'] - R410A_PI6_Df['s1']
 
     return   P_R410A_PI6
 
@@ -546,7 +548,7 @@ def P_R410A_Pi65(R410A_PI65_Df):
     P_R410A_PI65['P1_Process'] = R410A_PI65_Df['P1_Process']
     P_R410A_PI65['P2_Process'] = R410A_PI65_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R410A_PI65['delta_s'] = R410A_PI65_Df['s2'] - R410A_PI65_Df['s1']
 
     return   P_R410A_PI65
 
@@ -563,7 +565,7 @@ def P_R454C_Pi35(R454C_PI35_Df):
     P_R454C_PI35['P1_Process'] = R454C_PI35_Df['P1_Process']
     P_R454C_PI35['P2_Process'] = R454C_PI35_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R454C_PI35['delta_s'] = R454C_PI35_Df['s2'] - R454C_PI35_Df['s1']
 
     return   P_R454C_PI35
 
@@ -580,7 +582,7 @@ def P_R454C_Pi45(R454C_PI45_Df):
     P_R454C_PI45['P1_Process'] = R454C_PI45_Df['P1_Process']
     P_R454C_PI45['P2_Process'] = R454C_PI45_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R454C_PI45['delta_s'] = R454C_PI45_Df['s2'] - R454C_PI45_Df['s1']
 
     return   P_R454C_PI45
 
@@ -597,7 +599,7 @@ def P_R454C_Pi5(R454C_PI5_Df):
     P_R454C_PI5['P1_Process'] = R454C_PI5_Df['P1_Process']
     P_R454C_PI5['P2_Process'] = R454C_PI5_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R454C_PI5['delta_s'] = R454C_PI5_Df['s2'] - R454C_PI5_Df['s1']
 
     return   P_R454C_PI5
 
@@ -614,7 +616,7 @@ def P_R454C_Pi55(R454C_PI55_Df):
     P_R454C_PI55['P1_Process'] = R454C_PI55_Df['P1_Process']
     P_R454C_PI55['P2_Process'] = R454C_PI55_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R454C_PI55['delta_s'] = R454C_PI55_Df['s2'] - R454C_PI55_Df['s1']
 
     return   P_R454C_PI55
 
@@ -632,7 +634,7 @@ def P_R454C_Pi6(R454C_PI6_Df):
     P_R454C_PI6['P1_Process'] = R454C_PI6_Df['P1_Process']
     P_R454C_PI6['P2_Process'] = R454C_PI6_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R454C_PI6['delta_s'] = R454C_PI6_Df['s2'] - R454C_PI6_Df['s1']
 
     return   P_R454C_PI6
 
@@ -651,6 +653,6 @@ def P_R454C_Pi65(R454C_PI65_Df):
     P_R454C_PI65['P1_Process'] = R454C_PI65_Df['P1_Process']
     P_R454C_PI65['P2_Process'] = R454C_PI65_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R454C_PI65['delta_s'] = R454C_PI65_Df['s2'] - R454C_PI65_Df['s1']
 
     return   P_R454C_PI65

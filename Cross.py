@@ -143,11 +143,11 @@ R410A_PI55_Df = clean_R410A_PI55_DF()
 R410A_PI6_Df = clean_R410A_PI6_DF()
 R410A_PI65_Df = clean_R410A_PI65_DF()
 
-#R410A_PI4_Df = R410A_PI4_Df.append(R410A_PI42_Df)
+R410A_PI4_Df = R410A_PI4_Df.append(R410A_PI42_Df, ignore_index= True)
 
 P_R410A_PI3 = P_R410A_Pi3(R410A_PI3_Df)
 P_R410A_PI35 = P_R410A_Pi35(R410A_PI35_Df)
-#P_R410A_PI4 = P_R410A_Pi4(R410A_PI4_Df)
+P_R410A_PI4 = P_R410A_Pi4(R410A_PI4_Df)
 P_R410A_PI45 = P_R410A_Pi45(R410A_PI45_Df)
 P_R410A_PI5 = P_R410A_Pi5(R410A_PI5_Df)
 P_R410A_PI55 = P_R410A_Pi55(R410A_PI55_Df)
@@ -195,7 +195,7 @@ PI55 = [P_R290_PI55, P_R410A_PI55, P_R454C_PI55]
 PI6 = [P_R290_PI6, P_R410A_PI6, P_R454C_PI6]
 PI65 = [P_R410A_PI65, P_R454C_PI65]
 
-
+print(P_R32_PI35, 'Ist wichtig')
 
 full_R32 = pd.DataFrame()
 
@@ -205,7 +205,9 @@ temp_R32= pd.DataFrame()
 full_PI35 = pd.DataFrame()
 temp_R32['P_loss'] = P_R32_PI35['P_loss']
 temp_R32['P1_Process'] = P_R32_PI35['P1_Process']
+temp_R32['delta_s'] = P_R32_PI35['delta_s']
 temp_R32['KM']= 1
+temp_R32['PI'] = 3.5
 full_PI35 = full_PI35.append(temp_R32, ignore_index= True)
 full_R32 = full_R32.append(temp_R32, ignore_index= True)
 print(len(temp_R32))
@@ -214,18 +216,24 @@ print(len(temp_R32))
 
 temp_R32['P_loss'] = P_R32_PI3['P_loss']
 temp_R32['P1_Process'] = P_R32_PI3['P1_Process']
+temp_R32['delta_s'] = P_R32_PI3['delta_s']
+temp_R32['PI'] = 3
 temp_R32['KM']= 1
 print(len(temp_R32))
 full_R32 = full_R32.append(temp_R32, ignore_index= True)
 
 temp_R32['P_loss'] = P_R32_PI4['P_loss']
 temp_R32['P1_Process'] = P_R32_PI4['P1_Process']
+temp_R32['delta_s'] = P_R32_PI4['delta_s']
 temp_R32['KM']= 1
+temp_R32['PI'] = 4
 print(len(temp_R32))
 full_R32 = full_R32.append(temp_R32, ignore_index= True)
 
 temp_R32['P_loss'] = P_R32_PI45['P_loss']
 temp_R32['P1_Process'] = P_R32_PI45['P1_Process']
+temp_R32['delta_s'] = P_R32_PI45['delta_s']
+temp_R32['PI'] = 4.5
 temp_R32['KM']= 1
 print(len(temp_R32))
 
@@ -234,7 +242,9 @@ full_R32 = full_R32.append(temp_R32, ignore_index= True)
 
 temp_R32['P_loss'] = P_R32_PI25['P_loss']
 temp_R32['P1_Process'] = P_R32_PI25['P1_Process']
+temp_R32['delta_s'] = P_R32_PI25['delta_s']
 temp_R32['KM']= 1
+temp_R32['PI'] = 2.5
 
 full_R32 = full_R32.append(temp_R32, ignore_index= True)
 
@@ -254,7 +264,9 @@ temp_R290= pd.DataFrame()
 
 temp_R290['P_loss'] = P_R290_PI3['P_loss']
 temp_R290['P1_Process'] = P_R290_PI3['P1_Process']
+temp_R290['delta_s'] = P_R290_PI3['delta_s']
 temp_R290['KM']= 2
+temp_R290['PI'] = 3
 full_R290 = full_R290.append(temp_R290, ignore_index= True)
 
 
@@ -263,42 +275,52 @@ full_R290 = full_R290.append(temp_R290, ignore_index= True)
 
 temp_R290['P_loss'] = P_R290_PI35['P_loss']
 temp_R290['P1_Process'] = P_R290_PI35['P1_Process']
+temp_R290['delta_s'] = P_R290_PI35['delta_s']
 temp_R290['KM']= 2
+temp_R290['PI'] = 3.5
 full_PI35 = full_PI35.append(temp_R290, ignore_index= True)
 full_R290 = full_R290.append(temp_R290, ignore_index= True)
 
 temp_R290['P_loss'] = P_R290_PI4['P_loss']
 temp_R290['P1_Process'] = P_R290_PI4['P1_Process']
+temp_R290['delta_s'] = P_R290_PI4['delta_s']
 temp_R290['KM']= 2
+temp_R290['PI'] = 4
 full_R290 = full_R290.append(temp_R290, ignore_index= True)
+
 
 temp_R290['P_loss'] = P_R290_PI45['P_loss']
 temp_R290['P1_Process'] = P_R290_PI45['P1_Process']
+temp_R290['delta_s'] = P_R290_PI45['delta_s']
 temp_R290['KM']= 2
-full_R290 = full_R290.append(temp_R290, ignore_index= True)
-
-temp_R290['P_loss'] = P_R290_PI45['P_loss']
-temp_R290['P1_Process'] = P_R290_PI45['P1_Process']
-temp_R290['KM']= 2
+temp_R290['PI'] = 4.5
 full_R290 = full_R290.append(temp_R290, ignore_index= True)
 
 temp_R290['P_loss'] = P_R290_PI5['P_loss']
 temp_R290['P1_Process'] = P_R290_PI5['P1_Process']
+temp_R290['delta_s'] = P_R290_PI5['delta_s']
 temp_R290['KM']= 2
+temp_R290['PI'] = 5
 full_R290 = full_R290.append(temp_R290, ignore_index= True)
 
 temp_R290['P_loss'] = P_R290_PI55['P_loss']
 temp_R290['P1_Process'] = P_R290_PI55['P1_Process']
+temp_R290['delta_s'] = P_R290_PI55['delta_s']
 temp_R290['KM']= 2
+temp_R290['PI'] = 5.5
 full_R290 = full_R290.append(temp_R290, ignore_index= True)
 
 temp_R290['P_loss'] = P_R290_PI6['P_loss']
 temp_R290['P1_Process'] = P_R290_PI6['P1_Process']
+temp_R290['delta_s'] = P_R290_PI6['delta_s']
 temp_R290['KM']= 2
+temp_R290['PI'] = 6
 full_R290 = full_R290.append(temp_R290, ignore_index= True)
 
 temp_R290['P_loss'] = P_R290_PI65['P_loss']
 temp_R290['P1_Process'] = P_R290_PI65['P1_Process']
+temp_R290['delta_s'] = P_R290_PI65['delta_s']
+temp_R290['PI'] = 6.5
 temp_R290['KM']= 2
 full_R290 = full_R290.append(temp_R290, ignore_index= True)
 
@@ -311,44 +333,59 @@ temp_R410A= pd.DataFrame()
 full_R410A = pd.DataFrame()
 temp_R410A['P_loss'] = P_R410A_PI3['P_loss']
 temp_R410A['P1_Process'] = P_R410A_PI3['P1_Process']
+temp_R410A['delta_s'] = P_R410A_PI3['delta_s']
 temp_R410A['KM']= 3
+temp_R410A['PI'] = 3
 full_R410A = full_R410A.append(temp_R410A, ignore_index= True)
 
 
 temp_R410A['P_loss'] = P_R410A_PI35['P_loss']
 temp_R410A['P1_Process'] = P_R410A_PI35['P1_Process']
+temp_R410A['delta_s'] = P_R410A_PI35['delta_s']
 temp_R410A['KM']= 3
+temp_R410A['PI'] = 3.5
 full_PI35 = full_PI35.append(temp_R410A, ignore_index= True)
 full_R410A = full_R410A.append(temp_R410A, ignore_index= True)
-'''
+
 temp_R410A['P_loss'] = P_R410A_PI4['P_loss']
 temp_R410A['P1_Process'] = P_R410A_PI4['P1_Process']
+temp_R410A['delta_s'] = P_R410A_PI4['delta_s']
 temp_R410A['KM']= 3
+temp_R410A['PI'] = 4
 full_R410A = full_R410A.append(temp_R410A, ignore_index= True)
-'''
+
 temp_R410A['P_loss'] = P_R410A_PI45['P_loss']
 temp_R410A['P1_Process'] = P_R410A_PI45['P1_Process']
+temp_R410A['delta_s'] = P_R410A_PI45['delta_s']
 temp_R410A['KM']= 3
+temp_R410A['PI'] = 4.5
 full_R410A = full_R410A.append(temp_R410A, ignore_index= True)
 
 temp_R410A['P_loss'] = P_R410A_PI5['P_loss']
 temp_R410A['P1_Process'] = P_R410A_PI5['P1_Process']
+temp_R410A['delta_s'] = P_R410A_PI5['delta_s']
 temp_R410A['KM']= 3
+temp_R410A['PI'] = 5
 full_R410A = full_R410A.append(temp_R410A, ignore_index= True)
 
 temp_R410A['P_loss'] = P_R410A_PI55['P_loss']
 temp_R410A['P1_Process'] = P_R410A_PI55['P1_Process']
 temp_R410A['KM']= 3
+temp_R410A['PI'] = 5.5
 full_R410A = full_R410A.append(temp_R410A, ignore_index= True)
 
 temp_R410A['P_loss'] = P_R410A_PI6['P_loss']
 temp_R410A['P1_Process'] = P_R410A_PI6['P1_Process']
+temp_R410A['delta_s'] = P_R410A_PI6['delta_s']
 temp_R410A['KM']= 3
+temp_R410A['PI'] = 6
 full_R410A = full_R410A.append(temp_R410A, ignore_index= True)
 
 temp_R410A['P_loss'] = P_R410A_PI65['P_loss']
 temp_R410A['P1_Process'] = P_R410A_PI65['P1_Process']
+temp_R410A['delta_s'] = P_R410A_PI65['delta_s']
 temp_R410A['KM']= 3
+temp_R410A['PI'] = 6.5
 full_R410A = full_R410A.append(temp_R410A, ignore_index= True)
 
 
@@ -359,7 +396,9 @@ full_R454C = pd.DataFrame()
 
 temp_R454C['P_loss'] = P_R454C_PI35['P_loss']
 temp_R454C['P1_Process'] = P_R454C_PI35['P1_Process']
+temp_R454C['delta_s'] = P_R454C_PI35['delta_s']
 temp_R454C['KM']= 4
+temp_R454C['PI']= 3.5
 full_PI35 = full_PI35.append(temp_R454C, ignore_index= True)
 full_R454C = full_R454C.append(temp_R454C, ignore_index= True)
 
@@ -367,29 +406,39 @@ full_R454C = full_R454C.append(temp_R454C, ignore_index= True)
 
 temp_R454C['P_loss'] = P_R454C_PI45['P_loss']
 temp_R454C['P1_Process'] = P_R454C_PI45['P1_Process']
+temp_R454C['delta_s'] = P_R454C_PI45['delta_s']
 temp_R454C['KM']= 4
+temp_R454C['PI']= 4.5
 full_R454C = full_R454C.append(temp_R454C, ignore_index= True)
 
 temp_R454C['P_loss'] = P_R454C_PI5['P_loss']
 temp_R454C['P1_Process'] = P_R454C_PI5['P1_Process']
+temp_R454C['delta_s'] = P_R454C_PI5['delta_s']
 temp_R454C['KM']= 4
+temp_R454C['PI']= 5
 full_R454C = full_R454C.append(temp_R454C, ignore_index= True)
 
 temp_R454C['P_loss'] = P_R454C_PI55['P_loss']
 temp_R454C['P1_Process'] = P_R454C_PI55['P1_Process']
+temp_R454C['delta_s'] = P_R454C_PI55['delta_s']
 temp_R454C['KM']= 4
+temp_R454C['PI']= 5.5
 full_R454C = full_R454C.append(temp_R454C, ignore_index= True)
 
 temp_R454C['P_loss'] = P_R454C_PI6['P_loss']
 temp_R454C['P1_Process'] = P_R454C_PI6['P1_Process']
+temp_R454C['delta_s'] = P_R454C_PI6['delta_s']
 temp_R454C['KM']= 4
+temp_R454C['PI']= 6
 full_R454C = full_R454C.append(temp_R454C, ignore_index= True)
 
 temp_R454C['P_loss'] = P_R454C_PI65['P_loss']
 temp_R454C['P1_Process'] = P_R454C_PI65['P1_Process']
+temp_R454C['delta_s'] = P_R454C_PI65['delta_s']
 temp_R454C['KM']= 4
+temp_R454C['PI']= 6.5
 full_R454C = full_R454C.append(temp_R454C, ignore_index= True)
-print(len(full_R454C), ' Das ist full R454C')
+
 full = pd.DataFrame()
 
 full = full.append(full_R32 , ignore_index= True)
@@ -438,7 +487,24 @@ def Plot_Ploss_PI35(temp_R32, temp_R290, temp_R410A, temp_R454C):
     plt.scatter(temp_R454C['P_loss'], temp_R454C['P1_Process'], label='R454C', color='red')
     plt.legend()
     plt.show()
+print(full_R32)
+def Plot_ds_R32(full_R32, full_R290, full_R410A, full_R454C):
+    fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
+    #Festlegen der Achsenbeschriftung
+    font1 = {'family':'serif','color':'black','size':15}
+    font2 = {'family':'serif','color':'black','size':10}
+    plt.title('Entropiedifferenz abhängig vom Druckverhältnisse ' , fontdict= font1)
+    plt.xlabel('ds (s2-s1)', fontdict= font2)
+    plt.ylabel('PI', fontdict=font2)
+    plt.grid(color = 'black', linestyle= '--', linewidth = 0.5)
 
+    plt.scatter(full_R32['delta_s'], full_R32['PI'], label='R32', color = 'magenta')
+    plt.scatter(full_R290['delta_s'], full_R290['PI'], label='R290', color='blue')
+    plt.scatter(full_R410A['delta_s'], full_R410A['PI'], label='R410A', color='green')
+    plt.scatter(full_R454C['delta_s'], full_R454C['PI'], label='R454C', color='orange')
+    plt.legend()
+    plt.show()
+Plot_ds_R32(full_R32,full_R290, full_R410A,full_R454C)
 #Plot_Ploss_PI35(temp_R32, temp_R290, temp_R410A, temp_R454C)
 
 feature_cols = ['P_loss', 'P1_Process']
@@ -464,7 +530,7 @@ fig.savefig("decistion_tree.png")
 
 
 
-
+'''
 
 import statsmodels.api as sm
 
@@ -477,6 +543,6 @@ model = sm.OLS(y_train, X_train).fit()
 print(model.summary())
 
 y_pred = model.predict(X_test)
-print(y_pred)
+print(y_pred)'''
 
 print('Process finesh')
