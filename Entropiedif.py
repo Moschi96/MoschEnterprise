@@ -431,12 +431,14 @@ print(Calc_Mod_R32_Df)
 
 def Calc_Cis(df):
 
-    Z = df['T2_is_mod']* (df['s1'] - df['sp'])
+    Z = df['T2_is_mod']* (df['s1'] + df['sp'])
     N = df['h2_is_mod'] - df['h1']
-    cis = Z/N
-    df['Cis'] = cis
-    X = df['s1'] - cis * df['sp']
-    Y = 1 - cis
+    cis1 = Z/N
+
+    
+    df['Cis1'] = cis1
+    X = df['s1'] * (1 + cis1)
+    Y = 1 - cis1
     res = X/Y
 
     df['s2_theo'] = res
