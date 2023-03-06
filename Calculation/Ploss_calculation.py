@@ -11,6 +11,8 @@ def func_P_theo(P_elec, eta_is):
     P_is = eta_is * P_elec
     return P_loss, P_is
 
+
+
 def func_P_Rosk(mass_flow,h2_isentrop, h1, P_elec):
     P_is_ros = (mass_flow * (h2_isentrop - h1))
     P_loss = P_elec - P_is_ros
@@ -179,10 +181,10 @@ def P_R32_Pi25(R32_PI25_Df):
     P_R32_PI25['P2_Set'] = R32_PI25_Df['P2_Set']
     P_R32_PI25['P1_Process'] = R32_PI25_Df['P1_Process']
     P_R32_PI25['P2_Process'] = R32_PI25_Df['P2_Process']
-    #P_R454C['eta_is'] = eta_is_R454C
+
 
     P_R32_PI25['delta_s'] = R32_PI25_Df['s2'] - R32_PI25_Df['s1']
-
+    P_R32_PI25['MF_Suc'] = R32_PI25_Df['MF_Suc']
 
     return   P_R32_PI25
 
@@ -200,7 +202,7 @@ def P_R32_Pi3(R32_PI3_Df):
     P_R32_PI3['P2_Process'] = R32_PI3_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
     P_R32_PI3['delta_s'] = R32_PI3_Df['s2'] - R32_PI3_Df['s1']
-
+    P_R32_PI3['MF_Suc'] = R32_PI3_Df['MF_Suc']
     return   P_R32_PI3
 
 
@@ -217,7 +219,7 @@ def P_R32_Pi35(R32_PI35_Df):
     P_R32_PI35['P1_Process'] = R32_PI35_Df['P1_Process']
     P_R32_PI35['P2_Process'] = R32_PI35_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R32_PI35['MF_Suc'] = R32_PI35_Df['MF_Suc']
     P_R32_PI35['delta_s'] = R32_PI35_Df['s2'] - R32_PI35_Df['s1']
     return   P_R32_PI35
 
@@ -234,7 +236,7 @@ def P_R32_Pi4(R32_PI4_Df):
     P_R32_PI4['P1_Process'] = R32_PI4_Df['P1_Process']
     P_R32_PI4['P2_Process'] = R32_PI4_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
-
+    P_R32_PI4['MF_Suc'] = R32_PI4_Df['MF_Suc']
     P_R32_PI4['delta_s'] = R32_PI4_Df['s2'] - R32_PI4_Df['s1']
     return   P_R32_PI4
 
@@ -252,7 +254,7 @@ def P_R32_Pi45(R32_PI45_Df):
     P_R32_PI45['P2_Process'] = R32_PI45_Df['P2_Process']
     #P_R454C['eta_is'] = eta_is_R454C
     P_R32_PI45['delta_s'] = R32_PI45_Df['s2'] - R32_PI45_Df['s1']
-
+    P_R32_PI45['MF_Suc'] = R32_PI45_Df['MF_Suc']
     return   P_R32_PI45
 
 

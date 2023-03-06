@@ -47,6 +47,9 @@ P_R32_PI45 = P_R32_Pi45(R32_PI45_Df)
 
 
 
+print(P_R32_PI35, 'Das ist P_R32')
+
+
 
 
 
@@ -582,7 +585,7 @@ from Plot.Plot_Regression import plot_LR_R290_PI
 from Plot.Plot_Regression import plot_LR_R410A_PI
 from Plot.Plot_Regression import plot_LR_R454C_PI
 from Plot.Plot_Loss_KM import Plot_eta
-
+Plot_eta(P_R32, P_R290,P_R410A, P_R454C)
 plot_LR_R32_PI(P_R32_PI25,linP_R32_PI25,P_R32_PI3,linP_R32_PI3,P_R32_PI35,linP_R32_PI35,P_R32_PI4,linP_R32_PI4
                ,P_R32_PI45,linP_R32_PI45)
 
@@ -599,4 +602,3 @@ plot_LR_R454C_PI(P_R454C_PI35,linP_R454C_PI35,P_R454C_PI45,linP_R454C_PI45,P_R45
 
 
 
-Plot_eta(P_R32, P_R290,P_R410A, P_R454C)
