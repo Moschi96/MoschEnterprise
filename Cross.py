@@ -1,13 +1,14 @@
 import pandas as pd
 import numpy as np
 import sklearn.utils
+import tikzplotlib
 import xlsxwriter
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeClassifier
 from pathlib import Path
 import matplotlib.pyplot as plt
-
+import matplotlib
 from sklearn.tree import DecisionTreeClassifier # Import Decision Tree Classifier
 from sklearn.model_selection import train_test_split # Import train_test_split function
 from sklearn import metrics #Import scikit-learn metrics module for accuracy calculation
@@ -251,6 +252,27 @@ PI65 = [P_R410A_PI65, P_R454C_PI65]
 
 
 
+
+print(P_R32,'Das ist P_R32')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 KM_List = [P_R32, P_R290 , P_R410A , P_R454C]
 full = pd.concat(KM_List)
 
@@ -273,17 +295,15 @@ Y = Ytemp
 
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
 
-
-
-
+print(Xtemp)
 
 def Plot_eta(temp_R32, temp_R290, temp_R410A, temp_R454C):
     fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
     #Festlegen der Achsenbeschriftung
     font1 = {'family':'serif','color':'black','size':15}
     font2 = {'family':'serif','color':'black','size':10}
-    plt.title('Wirkunsgrad abhängig vom Druckverhältnis ' , fontdict= font1)
-    plt.xlabel('PI_Process ]', fontdict= font2)
+    plt.title('Bestimmung des Isentroper Wirkunsgrad über das Verdichtungsverhältnis ' , fontdict= font1)
+    plt.xlabel('PI_Process', fontdict= font2)
     plt.ylabel('Isentroper Wirkungsgrad', fontdict=font2)
     plt.grid(color = 'black', linestyle= '--', linewidth = 0.5)
 
@@ -297,6 +317,10 @@ def Plot_eta(temp_R32, temp_R290, temp_R410A, temp_R454C):
 Plot_eta(P_R32, P_R290, P_R410A, P_R454C)
 
 from sklearn.linear_model import LinearRegression
+
+
+from sklearn.preprocessing import PolynomialFeatures
+
 def Calc_LinearModell(Df):
     LR = LinearRegression()
     Res_Df = pd.DataFrame()
@@ -315,6 +339,24 @@ LR_R410A_eta = Calc_LinearModell(P_R410A)
 LR_R454C_eta = Calc_LinearModell(P_R454C)
 print(LR_R32_eta ,LR_R290_eta, LR_R410A_eta, LR_R454C_eta, ' Das ist jetzt der wichtige Bumms')
 
+def Calc_PolyModell(Df):
+    poly = poly = PolynomialFeatures(degree=2, include_bias=False)
+
+    Res_Df = pd.DataFrame()
+    poly.fit(Df[['PI_Process']], Df[['eta_is_rosk']])
+    x = poly.coef_[0]
+    y = poly.intercept_
+    z = poly.score(Df[['PI_Process']], Df[['eta_is_rosk']])
+    Res_Df['COE'] = x
+    Res_Df['LIN'] = y
+    Res_Df['Score'] = z
+    return Res_Df
+
+
+
+
+
+
 def Plot_Ploss_PI35(temp_R32, temp_R290, temp_R410A, temp_R454C):
     fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
     #Festlegen der Achsenbeschriftung
@@ -325,33 +367,33 @@ def Plot_Ploss_PI35(temp_R32, temp_R290, temp_R410A, temp_R454C):
     plt.ylabel('Verlustleistung [kW]', fontdict=font2)
     plt.grid(color = 'black', linestyle= '--', linewidth = 0.5)
 
-    plt.scatter(temp_R32['P_loss'], temp_R32['P1_Process'], label='R32', color = 'magenta')
-    plt.scatter(temp_R290['P_loss'], temp_R290['P1_Process'], label='R290', color='blue')
-    plt.scatter(temp_R410A['P_loss'], temp_R410A['P1_Process'], label='R410A', color='green')
-    plt.scatter(temp_R454C['P_loss'], temp_R454C['P1_Process'], label='R454C', color='red')
+    plt.scatter(temp_R32['PI'], temp_R32['P_loss'], label='R32', color = 'magenta')
+    plt.scatter(temp_R290['PI'], temp_R290['P_loss'], label='R290', color='blue')
+    plt.scatter(temp_R410A['PI'], temp_R410A['P_loss'], label='R410A', color='green')
+    plt.scatter(temp_R454C['PI'], temp_R454C['P_loss'], label='R454C', color='red')
     plt.legend()
     plt.show()
 
 
 
 def Plot_ds_R32(full_R32, full_R290, full_R410A, full_R454C):
-    fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
+    fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True  )
     #Festlegen der Achsenbeschriftung
     font1 = {'family':'serif','color':'black','size':15}
     font2 = {'family':'serif','color':'black','size':10}
-    plt.title('Entropiedifferenz abhängig vom Druckverhältnisse ' , fontdict= font1)
-    plt.xlabel('ds (s2-s1)', fontdict= font2)
-    plt.ylabel('PI', fontdict=font2)
+
+
     plt.grid(color = 'black', linestyle= '--', linewidth = 0.5)
 
-    plt.scatter(full_R32['delta_s'], full_R32['PI'], label='R32', color = 'magenta')
-    plt.scatter(full_R290['delta_s'], full_R290['PI'], label='R290', color='blue')
-    plt.scatter(full_R410A['delta_s'], full_R410A['PI'], label='R410A', color='green')
-    plt.scatter(full_R454C['delta_s'], full_R454C['PI'], label='R454C', color='orange')
+    plt.scatter(full_R32['PI'],full_R32['delta_s'], label='R32', color = 'magenta')
+    plt.scatter(full_R290['PI'], full_R290['delta_s'], label='R290', color='blue')
+    plt.scatter(full_R410A['PI'], full_R410A['delta_s'], label='R410A', color='green')
+    plt.scatter(full_R454C['PI'], full_R454C['delta_s'], label='R454C', color='orange')
     plt.legend()
+    plt.savefig('Deltas.jpg')
     plt.show()
 Plot_ds_R32(P_R32, P_R290, P_R410A, P_R454C)
-#Plot_Ploss_PI35(temp_R32, temp_R290, temp_R410A, temp_R454C)
+Plot_Ploss_PI35(P_R32, P_R290, P_R410A, P_R454C)
 
 feature_cols = ['P_loss', 'P1_Process']
 class_names = ['1','2','3','4']

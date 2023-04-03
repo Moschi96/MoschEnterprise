@@ -257,6 +257,22 @@ def P_R32_Pi45(R32_PI45_Df):
     P_R32_PI45['MF_Suc'] = R32_PI45_Df['MF_Suc']
     return   P_R32_PI45
 
+def P_R32_Pi5(R32_PI5_Df):
+    '''Berechnung des Isentropen Wirkungsgrad'''
+    #eta_is_R454C = func_eta_is(R454C_Df['h1'], R454C_Df['h2is'], R454C_Df['h2'])
+    P_R32_PI5 = pd.DataFrame()
+    #P_R454C['P_loss'], P_R454C['P_is'] = func_P_theo(R454C_Df['Power'], eta_is_R454C)
+    P_R32_PI5['P_loss'], P_R32_PI5['P_is'], P_R32_PI5['eta_is_rosk'] = func_P_Rosk(R32_PI5_Df['MF_Suc'], R32_PI5_Df['h2is'], R32_PI5_Df['h1'],
+                                                     R32_PI5_Df['Power'])
+
+    P_R32_PI5['P1_Set'] = R32_PI5_Df['P1_Set']
+    P_R32_PI5['P2_Set'] = R32_PI5_Df['P2_Set']
+    P_R32_PI5['P1_Process'] = R32_PI5_Df['P1_Process']
+    P_R32_PI5['P2_Process'] = R32_PI5_Df['P2_Process']
+    #P_R454C['eta_is'] = eta_is_R454C
+    P_R32_PI5['delta_s'] = R32_PI5_Df['s2'] - R32_PI5_Df['s1']
+    P_R32_PI5['MF_Suc'] = R32_PI5_Df['MF_Suc']
+    return   P_R32_PI5
 
 
 def P_R290_Pi25(R290_PI25_Df):

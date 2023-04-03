@@ -61,7 +61,7 @@ def plot_LR_R32(P_KM_PI, LR_KM_PI, name):
     plt.scatter(P_KM_PI[['P1_Process']], P_KM_PI[['P_loss']], )
     plt.plot(P_KM_PI[['P1_Process']], LR_KM_PI.predict(P_KM_PI[['P1_Process']]), color='red')
     plt.legend()
-    plt.show()
+
 
 
 def plot_LR_R32_PI(P_R32_PI25,linP_R32_PI25,P_R32_PI3,linP_R32_PI3,P_R32_PI35,linP_R32_PI35,P_R32_PI4,linP_R32_PI4,P_R32_PI45,linP_R32_PI45):

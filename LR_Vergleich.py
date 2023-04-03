@@ -77,7 +77,7 @@ LR_Data = pd.DataFrame()
 #print(LR_R32_Data)
 
 
-
+print(LR_R290_Data)
 
 def calc_Tangente_KM(LR_KM, x_Achse, i ):
 
@@ -262,13 +262,13 @@ Tan_PI35['R32'] = Tan_R32['PI35']
 Tan_PI35['R290'] = Tan_R290['PI35']
 Tan_PI35['R410A'] = Tan_R410A['PI35']
 Tan_PI35['R454C'] = Tan_R454C['PI35']
-
+'''
 Tan_PI4 = pd.DataFrame()
 Tan_PI4['R32'] = 0
 Tan_PI4['R290'] = Tan_R290['PI4']
 Tan_PI4['R410A'] = Tan_R410A['PI4']
 Tan_PI4['R454C'] = 0
-
+'''
 Tan_PI45 = pd.DataFrame()
 Tan_PI45['R32'] = 0
 

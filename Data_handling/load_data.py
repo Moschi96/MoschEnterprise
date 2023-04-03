@@ -78,6 +78,10 @@ def getdata_R32_PI45():
     rawdata_R32_PI_45 = pd.read_csv(rawdata_R32_PI45_dic)
     return rawdata_R32_PI_45
 
+def getdata_R32_PI5():
+    rawdata_R32_PI5_dic = dataFolder/'03_Code'/'Input_Data'/'05_Quasistationär_csv'/'R32' /'R32_pi_5.csv'
+    rawdata_R32_PI_5 = pd.read_csv(rawdata_R32_PI5_dic)
+    return rawdata_R32_PI_5
 def getdata_R290_PI25():
     rawdata_R290_PI25_dic = dataFolder/'03_Code'/'Input_Data'/'05_Quasistationär_csv'/'R290' /'R290_pi_25.csv'
     rawdata_R290_PI_25 = pd.read_csv(rawdata_R290_PI25_dic)

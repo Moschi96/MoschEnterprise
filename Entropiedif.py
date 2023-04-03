@@ -364,9 +364,8 @@ def calc_cis_mod(df , KM): #RKm_PIXX_DF
 
 
 
-R32_Df['sp'] = calc_cis_mod(R32_Df, KM = 'R32')
 
-print(R32_Df)
+
 
 
 
@@ -411,14 +410,16 @@ def Anal_Ploss(df):
     df['Ver_Param'] = df['P_loss'] - df['P_loss_theo']
     return df
 
-Calc_Mod_R32_Df , xd , tis = calc_dh_mod(R32_Df, KM='R32')
+R32_Df , xd , tis = calc_dh_mod(R32_Df, KM='R32')
 
-Calc_Mod_R32_Df['h2_is_mod'] = xd
-Calc_Mod_R32_Df['T2_is_mod'] = tis
+R32_Df['h2_is_mod'] = xd
+R32_Df['T2_is_mod'] = tis
 
 
 
-print(Calc_Mod_R32_Df)
+
+
+
 
 #Calc_Mod_R290_Df = calc_dh_mod(R290_Df, KM = 'R290')
 #Calc_Mod_R410A_Df = calc_dh_mod(R410A_Df, KM = 'R410A')
@@ -435,7 +436,7 @@ def Calc_Cis(df):
     N = df['h2_is_mod'] - df['h1']
     cis1 = Z/N
 
-    
+
     df['Cis1'] = cis1
     X = df['s1'] * (1 + cis1)
     Y = 1 - cis1
@@ -445,8 +446,8 @@ def Calc_Cis(df):
 
     return df
 
-Calc_Mod_R32_Df = Calc_Cis(Calc_Mod_R32_Df)
-print(Calc_Mod_R32_Df)
+
+
 def Plot_Ploss_Vergleich(df ):
     fig, ax = plt.subplots(1,1,figsize=(13, 8), layout='constrained',sharey=True )
     #Festlegen der Achsenbeschriftung
