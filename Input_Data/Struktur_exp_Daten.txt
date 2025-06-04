@@ -1,0 +1,4 @@
+01_Rohdaten: 			Enthält die Rohdaten, wie sie vom Prüfstand übergeben werden für alle vermessenen Fluide (R410A, R32, R454C und R290)
+				!Achtung!: Die Belegung der Kanäle wurde zwischen den Messungen zweimal geändert. Das erfordert Anpassungen in den Auswerteskripten.
+02_Quasistationäre Daten: 	Enthält die Daten der auszuwertenden 10 Minuten Intervalle. 
+				Außerdem sind unter 'meandata' die gemittelten Daten abgelegt.
